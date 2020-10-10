@@ -10,7 +10,7 @@ if exists("b:current_syntax")
 endif
 
 " Identifiers
-syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>"
+"syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>"
 
 " Keywords
 syn keyword divHeaderStatement compiler_options program import setup_program
@@ -141,7 +141,7 @@ hi def link divConstants              Constants
 hi def link divBlockDeclaration       Statement
 hi def link divStartBlockStatement    Statement
 hi def link divEndBlockStatement      Statement
-hi def link divIdentifier             Identifier
+"hi def link divIdentifier             Identifier
 
 
 " WIP
