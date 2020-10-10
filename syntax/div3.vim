@@ -12,8 +12,23 @@ endif
 " Keywords
 syn keyword divHeaderStatement compiler_options program import setup_program
 syn keyword divHeaderStatement COMPILER_OPTIONS PROGRAM IMPORT SETUP_PROGRAM
-syn keyword div3Keywords process begin end private const global local function repeat until loop frame if else switch from while for break continue return clone debug offset do struct case
-syn keyword div3Keywords PROCESS BEGIN END PRIVATE CONST GLOBAL LOCAL FUNCTION REPEAT UNTIL LOOP FRAME IF ELSE SWITCH FROM WHILE FOR BREAK CONTINUE RETURN CLONE DEBUG OFFSET DO STRUCT CASE
+syn keyword divConditional if else switch case
+syn keyword divConditional IF ELSE SWITCH CASE
+syn keyword divRepeat do for do repeat while to until loop step
+syn keyword divRepeat DO FOR DO REPEAT WHILE TO UNTIL LOOP STEP
+syn keyword divBlockDeclaration const global local private
+syn keyword divBlockDeclaration CONST GLOBAL LOCAL PRIVATE
+syn keyword divStatement process function
+syn keyword divStatement PROCESS FUNCTION
+syn keyword divStatement break return continue
+syn keyword divStatement BREAK RETURN CONTINUE
+syn keyword divStatement offset pointer sizeof
+syn keyword divStatement OFFSET POINTER SIZEOF
+syn keyword divStruct struct
+syn keyword divStruct STRUCT
+
+syn keyword div3Keywords begin end frame from clone debug case
+syn keyword div3Keywords BEGIN END FRAME FROM CLONE DEBUG CASE
 
 " Comments
 syn keyword div3TodoComment contained TODO FIXME TBD NOTE
@@ -23,7 +38,8 @@ syn region div3Comment start=/\/\*/ end=/\*\// contains=div3TodoComment,@Spell e
 " Strings
 syn region div3String start=+"+ skip=+\\\("\|$\)+ end=+"\|$+
 
-" Numbers
+" Numbers and booleans
+syn keyword divBoolean true false
 syn match div3Number /\<\d\+\%([eE][+-]\=\d\+\)\=\>\|\<0[bB][01]\+\>\|\<0[oO]\o\+\>\|\<0[xX]\x\+\>/
 
 " Operators
@@ -33,6 +49,7 @@ syn match divLogicOperator  "&&\|||" "\|or\|xor\|and\|neg
 
 " Types and declarations
 syn keyword divType byte int word string
+syn keyword divType BYTE INT WORD STRING
 
 " Special
 syn keyword div3Special _max_process _extended_conditions _simple_conditions _case_sensitive _ignore_errors _free_syntax _no_strfix _no_optimization _no_range_check _no_id_check _no_null_check _no_check
@@ -43,17 +60,24 @@ syn keyword div3Commands collision get_angle get_dist get_distx get_disty get_id
 " Highlighting
 let b:current_syntax = "div3"
 
-hi def link divHeaderStatement        Statement
-hi def link div3Keywords              Statement
+hi def link divBoolean                Boolean
 hi def link div3Comment               Comment
-hi def link divType                   Type
-hi def link div3TodoComment           Todo
 hi def link div3String                String
+hi def link divConditional            Conditional
 hi def link div3Number                Number
+hi def link divRepeat                 Repeat
+hi def link divHeaderStatement        Statement
+hi def link divStatement              Statement
+hi def link div3Keywords              Statement
+hi def link divStruct                 Statement
 hi def link divMathOperator           Operator
 hi def link divLogicOperator          Operator
+hi def link div3TodoComment           Todo
+hi def link divType                   Type
+
 hi def link div3Special               PreProc
 hi def link div3Commands              Function
+
 
 " WIP
 " Expression
