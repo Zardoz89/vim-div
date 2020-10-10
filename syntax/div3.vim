@@ -110,6 +110,9 @@ syn keyword divConstants _ins _home _pgup _del _end _pgdn _up _down _left _right
 syn keyword divConstants _c_backslash _c_asterisk _c_minus _c_home _c_up _c_pgup
 syn keyword divConstants _c_left _c_center _c_right _c_end _c_down _c_pgdn _c_ins _c_del _c_plus _c_enter
 
+" Regions
+syn region divBlock start=+begin+ end=+end+ transparent contains=ALLBUT,divBlockDeclaration,divHeaderStatement
+
 " Highlighting
 let b:current_syntax = "div3"
 
