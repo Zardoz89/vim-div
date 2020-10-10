@@ -31,6 +31,8 @@ syn match div3Number /\<\d\+\%([eE][+-]\=\d\+\)\=\>\|\<0[bB][01]\+\>\|\<0[oO]\o\
 syn match divMathOperator /[-+%<>!&|^*=]/
 syn match divLogicOperator  "&&\|||\|or\|xor\|and\|neg"
 
+" Types and declarations
+syn keyword divType byte int word string
 
 " Special
 syn keyword div3Special _max_process _extended_conditions _simple_conditions _case_sensitive _ignore_errors _free_syntax _no_strfix _no_optimization _no_range_check _no_id_check _no_null_check _no_check
@@ -41,16 +43,17 @@ syn keyword div3Commands collision get_angle get_dist get_distx get_disty get_id
 " Highlighting
 let b:current_syntax = "div3"
 
-hi def link divHeaderStatement Statement
-hi def link div3Keywords Statement
-hi def link div3Comment Comment
-hi def link div3TodoComment Todo
-hi def link div3String String
-hi def link div3Number Number
-hi def link divMathOperator Operator
-hi def link divLogicOperator Operator
-hi def link div3Special PreProc
-hi def link div3Commands Type
+hi def link divHeaderStatement        Statement
+hi def link div3Keywords              Statement
+hi def link div3Comment               Comment
+hi def link divType                   Type
+hi def link div3TodoComment           Todo
+hi def link div3String                String
+hi def link div3Number                Number
+hi def link divMathOperator           Operator
+hi def link divLogicOperator          Operator
+hi def link div3Special               PreProc
+hi def link div3Commands              Function
 
 " WIP
 " Expression
