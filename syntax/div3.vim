@@ -18,6 +18,10 @@ syn keyword divRepeat do for do repeat while to until loop step
 syn keyword divRepeat DO FOR DO REPEAT WHILE TO UNTIL LOOP STEP
 syn keyword divBlockDeclaration const global local private
 syn keyword divBlockDeclaration CONST GLOBAL LOCAL PRIVATE
+syn keyword divStartBlockStatement begin
+syn keyword divStartBlockStatement BEGIN
+syn keyword divEndBlockStatement end
+syn keyword divEndBlockStatement END
 syn keyword divStatement process function
 syn keyword divStatement PROCESS FUNCTION
 syn keyword divStatement break return continue
@@ -27,8 +31,11 @@ syn keyword divStatement OFFSET POINTER SIZEOF
 syn keyword divStruct struct
 syn keyword divStruct STRUCT
 
-syn keyword divKeywords begin end frame from clone debug case
-syn keyword divKeywords BEGIN END FRAME FROM CLONE DEBUG CASE
+syn keyword divKeywords frame from clone
+syn keyword divKeywords FRAME FROM CLONE
+
+syn keyword divDebug debug
+syn keyword divDebug DEBUG
 
 " Comments
 syn keyword divTodoComment contained TODO FIXME TBD NOTE
@@ -36,7 +43,8 @@ syn region divComment start=/\/\// end=/$/ contains=divTodoComment,@Spell extend
 syn region divComment start=/\/\*/ end=/\*\// contains=divTodoComment,@Spell extend keepend
 
 " Strings
-syn region divString start=+"+ skip=+\\\("\|$\)+ end=+"\|$+
+"syn region divString start=+"+ skip=+\\\("\|$\)+ end=+"\|$+
+syn region divString matchgroup=divString start=+"+ end=+"+ oneline
 
 " Numbers and booleans
 syn keyword divBoolean true false
@@ -113,17 +121,20 @@ hi def link divNumber                 Number
 hi def link divRepeat                 Repeat
 hi def link divHeaderStatement        Statement
 hi def link divStatement              Statement
-hi def link divKeywords               Statement
-hi def link divStruct                 Statement
+hi def link divKeywords               Keyword
+hi def link divDebug                  Debug
+hi def link divStruct                 Structure
 hi def link divMathOperator           Operator
 hi def link divLogicOperator          Operator
 hi def link divTodoComment            Todo
 hi def link divType                   Type
 
-hi def link divSpecial                PreProc
+hi def link divSpecial                Special
 hi def link divFunction               Function
 hi def link divConstants              Constants
 hi def link divBlockDeclaration       Statement
+hi def link divStartBlockStatement    Statement
+hi def link divEndBlockStatement      Statement
 
 
 " WIP
@@ -134,3 +145,5 @@ hi def link divBlockDeclaration       Statement
 "syntax match div3Operator /[\!\|\&\+\-\<\>\=\%\/\*\~\^]\{1}/ skipwhite skipempty nextgroup=@div3Expression
 " match /
 "syntax match div3Operator /[/]/
+
+" vim: set ts=2 sw=2 tw=78 et :
