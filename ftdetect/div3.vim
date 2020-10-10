@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.prg set filetype=div3
+au BufRead,BufNewFile *.[pP][rR][gG] set filetype=div3
