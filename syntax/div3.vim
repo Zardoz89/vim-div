@@ -119,7 +119,6 @@ syn region divBlock start=+begin+ end=+end+ transparent contains=ALLBUT,divBlock
 " Highlighting
 let b:current_syntax = "div3"
 
-hi def link divIdentifier             Identifier
 hi def link divBoolean                Boolean
 hi def link divComment                Comment
 hi def link divString                 String
@@ -142,6 +141,7 @@ hi def link divConstants              Constants
 hi def link divBlockDeclaration       Statement
 hi def link divStartBlockStatement    Statement
 hi def link divEndBlockStatement      Statement
+hi def link divIdentifier             Identifier
 
 
 " WIP
