@@ -77,6 +77,7 @@ hi def link divType                   Type
 
 hi def link div3Special               PreProc
 hi def link div3Commands              Function
+hi def link divBlockDeclaration       Statement
 
 
 " WIP
