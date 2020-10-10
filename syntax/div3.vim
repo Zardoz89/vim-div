@@ -9,6 +9,9 @@ if exists("b:current_syntax")
     finish
 endif
 
+" Identifiers
+syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>"
+
 " Keywords
 syn keyword divHeaderStatement compiler_options program import setup_program
 syn keyword divHeaderStatement COMPILER_OPTIONS PROGRAM IMPORT SETUP_PROGRAM
@@ -116,6 +119,7 @@ syn region divBlock start=+begin+ end=+end+ transparent contains=ALLBUT,divBlock
 " Highlighting
 let b:current_syntax = "div3"
 
+hi def link divIdentifier             Identifier
 hi def link divBoolean                Boolean
 hi def link divComment                Comment
 hi def link divString                 String
