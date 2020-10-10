@@ -1,4 +1,4 @@
-" DIV DX 3.0 Syntax Highlighting for Vim
+" DIV 2 and DIV DX 3.0 Syntax Highlighting for Vim
 
 if exists("b:current_syntax")
     finish

@@ -1,18 +1,10 @@
-# dotfiles
+# DIV 2/3 Syntax Highlighting for Vim
 
-Configuration files for Vim and other software that lives in the user directory.
+Highlights language keywords, built-in commands, string literals, numbers, (most) operators, comments, todo comments and compiler options.  
 
-## Structure
+Based on the original files of Casper van Beuzekom (cmvanb) on https://github.com/cmvanb/dotfiles/tree/master/.vim
 
-Git submodules are used for external dependencies (Vim plugins).
+## Screenshot
 
-*Add a plugin*: `git submodule add <git_repo> <directory>`  
+![Imgur](https://i.imgur.com/vlMGg0i.png)
 
-## Windows Setup
-
-1. `git submodule update --init`  
-2. `scripts/setup-dotfiles-windows-user.bat`  
-
-## Unix Setup
-
-[TODO]
