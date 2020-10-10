@@ -29,7 +29,7 @@ syn match div3Number /\<\d\+\%([eE][+-]\=\d\+\)\=\>\|\<0[bB][01]\+\>\|\<0[oO]\o\
 " Operators
 "   match single-char operators:  - + % < > ! & | ^ * =
 syn match divMathOperator /[-+%<>!&|^*=]/
-syn match divLogicOperator  "&&\|||\|or\|xor\|and\|neg"
+syn match divLogicOperator  "&&\|||" "\|or\|xor\|and\|neg
 
 " Types and declarations
 syn keyword divType byte int word string
