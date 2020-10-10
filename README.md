@@ -6,5 +6,4 @@ Based on the original files of Casper van Beuzekom (cmvanb) on https://github.co
 
 ## Screenshot
 
-![Imgur](https://i.imgur.com/vlMGg0i.png)
-
+![Imgur](https://i.imgur.com/ZChqKeM.png)
