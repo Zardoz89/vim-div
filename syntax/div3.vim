@@ -1,6 +1,6 @@
 " DIV 2 , DIV DX 3.0 and Gemix Syntax Highlighting for Vim
 " Vim syntax file
-" Language: DIV2 and DIV DX 3 language
+" Language: DIV2 , DIV DX 3.0 and Gemix language
 " Original Author: Casper van Beuzekom
 " Maintainer: Luis Panadero Guardeño
 " Latest Revision: 25-10-2021
