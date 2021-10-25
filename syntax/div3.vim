@@ -1,9 +1,9 @@
-" DIV 2 and DIV DX 3.0 Syntax Highlighting for Vim
+" DIV 2 , DIV DX 3.0 and Gemix Syntax Highlighting for Vim
 " Vim syntax file
 " Language: DIV2 and DIV DX 3 language
 " Original Author: Casper van Beuzekom
 " Maintainer: Luis Panadero Guardeño
-" Latest Revision: 10-10-2020
+" Latest Revision: 25-10-2021
 
 if exists("b:current_syntax")
     finish
@@ -19,8 +19,8 @@ syn keyword divConditional if else switch case
 syn keyword divConditional IF ELSE SWITCH CASE
 syn keyword divRepeat do for do repeat while to until loop step
 syn keyword divRepeat DO FOR DO REPEAT WHILE TO UNTIL LOOP STEP
-syn keyword divBlockDeclaration const global local private
-syn keyword divBlockDeclaration CONST GLOBAL LOCAL PRIVATE
+syn keyword divBlockDeclaration typedef const global local private
+syn keyword divBlockDeclaration TYPEDEF CONST GLOBAL LOCAL PRIVATE
 syn keyword divStartBlockStatement begin
 syn keyword divStartBlockStatement BEGIN
 syn keyword divEndBlockStatement end
@@ -33,6 +33,8 @@ syn keyword divStatement offset pointer sizeof
 syn keyword divStatement OFFSET POINTER SIZEOF
 syn keyword divStruct struct
 syn keyword divStruct STRUCT
+syn keyword divType type
+syn keyword divType TYPE
 
 syn keyword divKeywords frame from clone
 syn keyword divKeywords FRAME FROM CLONE
@@ -61,12 +63,17 @@ syn match divLogicOperator  "&&\|||" "\|or\|xor\|and\|neg
 " Types and declarations
 syn keyword divType byte int word string
 syn keyword divType BYTE INT WORD STRING
+syn keyword divType uint float double long
+syn keyword divType UINT FLOAT DOUBLE LONG
+syn keyword divType int8 int16 int32 int64 uint8 uint16 uint32 uint64
+syn keyword divType INT8 INT16 INT32 INT64 UINT8 UINT16 UINT32 UINT64
 
 " Special
 syn keyword divSpecial _max_process _extended_conditions _simple_conditions
 syn keyword divSpecial _case_sensitive _ignore_errors _free_syntax _no_strfix
 syn keyword divSpecial _no_optimization _no_range_check _no_id_check
 syn keyword divSpecial _no_null_check _no_check
+syn keyword divSpecial _extended_conditions _use_cstyle _use_cstyle_matrix
 
 " Funtions
 syn keyword divFunction signal key load_pal load_fpg start_scroll stop_scroll out_region
@@ -130,6 +137,7 @@ hi def link divStatement              Statement
 hi def link divKeywords               Keyword
 hi def link divDebug                  Debug
 hi def link divStruct                 Structure
+hi def link divType                   Structure
 hi def link divMathOperator           Operator
 hi def link divLogicOperator          Operator
 hi def link divTodoComment            Todo
