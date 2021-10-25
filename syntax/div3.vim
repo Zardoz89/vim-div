@@ -9,40 +9,30 @@ if exists("b:current_syntax")
     finish
 endif
 
+syntax case ignore
+
 " Identifiers
 "syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>"
 
 " Keywords
-syn keyword divHeaderStatement compiler_options program import setup_program
-syn keyword divHeaderStatement COMPILER_OPTIONS PROGRAM IMPORT SETUP_PROGRAM
-syn keyword divConditional if else switch case
-syn keyword divConditional IF ELSE SWITCH CASE
+syn keyword divHeaderStatement compiler_options program import include setup_program
+syn keyword divHeaderStatement typedef declare const
+syn keyword divConditional if else elseif switch case
 syn keyword divRepeat do for do repeat while to until loop step
-syn keyword divRepeat DO FOR DO REPEAT WHILE TO UNTIL LOOP STEP
-syn keyword divBlockDeclaration typedef const global local private methods
-syn keyword divBlockDeclaration TYPEDEF CONST GLOBAL LOCAL PRIVATE METHODS
+syn keyword divBlockDeclaration global local public private callback methods
 syn keyword divStartBlockStatement begin
-syn keyword divStartBlockStatement BEGIN
 syn keyword divEndBlockStatement end
-syn keyword divEndBlockStatement END
-syn keyword divStatement process function
-syn keyword divStatement PROCESS FUNCTION
+syn keyword divStatement process function method alias
 syn keyword divStatement break return continue
-syn keyword divStatement BREAK RETURN CONTINUE
-syn keyword divStatement offset pointer sizeof
-syn keyword divStatement OFFSET POINTER SIZEOF
 syn keyword divStruct struct
-syn keyword divStruct STRUCT
-syn keyword divType type
-syn keyword divType TYPE
+syn keyword gemixTypeDef type
 
 syn keyword divKeywords frame from clone
-syn keyword divKeywords FRAME FROM CLONE
 
 syn keyword divDebug debug
-syn keyword divDebug DEBUG
 
 " Comments
+syntax case match
 syn keyword divTodoComment contained TODO FIXME TBD NOTE
 syn region divComment start=/\/\// end=/$/ contains=divTodoComment,@Spell extend keepend
 syn region divComment start=/\/\*/ end=/\*\// contains=divTodoComment,@Spell extend keepend
@@ -51,22 +41,23 @@ syn region divComment start=/\/\*/ end=/\*\// contains=divTodoComment,@Spell ext
 "syn region divString start=+"+ skip=+\\\("\|$\)+ end=+"\|$+
 syn region divString matchgroup=divString start=+"+ end=+"+ oneline
 
+syntax case ignore
 " Numbers and booleans
 syn keyword divBoolean true false
 syn match divNumber /\<\d\+\%([eE][+-]\=\d\+\)\=\>\|\<0[bB][01]\+\>\|\<0[oO]\o\+\>\|\<0[xX]\x\+\>/
 
 " Operators
 "   match single-char operators:  - + % < > ! & | ^ * =
+syn keyword divPointerOperator offset pointer
 syn match divMathOperator /[-+%<>!&|^*=]/
 syn match divLogicOperator  "&&\|||" "\|or\|xor\|and\|neg
+syn match gemixLogicOperator  "bnot\|band\|bxor\|bor"
+syn match gemixOperator "type\|id\|whoami\|this"
 
 " Types and declarations
 syn keyword divType byte int word string
-syn keyword divType BYTE INT WORD STRING
-syn keyword divType uint float double long
-syn keyword divType UINT FLOAT DOUBLE LONG
-syn keyword divType int8 int16 int32 int64 uint8 uint16 uint32 uint64
-syn keyword divType INT8 INT16 INT32 INT64 UINT8 UINT16 UINT32 UINT64
+syn keyword gemixType uint float double long bool signed unsigned fobject void
+syn keyword gemixType int8 int16 int32 int64 uint8 uint16 uint32 uint64
 
 " Special
 syn keyword divSpecial _max_process _extended_conditions _simple_conditions
@@ -77,6 +68,7 @@ syn keyword divSpecial _use_cstyle _use_cstyle_matrix _use_cstyle_conditions _us
 syn keyword divSpecial _use_always_int2string_conversions
 
 " Funtions
+syn keyword divFunction sizeof
 syn keyword divFunction signal key load_pal load_fpg start_scroll stop_scroll out_region
 syn keyword divFunction graphic_info collision get_id get_distx get_disty get_angle get_dist fade
 syn keyword divFunction load_fnt write write_int delete_text move_text unload_fpg rand define_region
@@ -100,6 +92,7 @@ syn keyword divFunction setdrive chdir mkdir remove disk_free memory_free ignore
 syn keyword divFunction sin cos tan asin acos atan atan2 draw delete_draw move_draw save_map
 syn keyword divFunction write_in_map calculate itoa change_channel malloc free encode encode_file
 syn keyword divFunction decode_file compress_file uncompress_file find_color load_screen force_pal
+syn keyword gemixFunction dup
 
 " Constants
 syn keyword divConstants m320x200 m320x240 m320x400 m360x240 m360x360 m376x282 m640x400 m640x480 m800x600 m1024x768
@@ -137,14 +130,19 @@ hi def link divStatement              Statement
 hi def link divKeywords               Keyword
 hi def link divDebug                  Debug
 hi def link divStruct                 Structure
-hi def link divType                   Structure
+hi def link gemixTypeDef              Structure
+hi def link divPointerOperator        Operator
 hi def link divMathOperator           Operator
 hi def link divLogicOperator          Operator
+hi def link gemixLogicOperator        Operator
+hi def link gemixOperator             Operator
 hi def link divTodoComment            Todo
 hi def link divType                   Type
+hi def link gemixType                 Type
 
 hi def link divSpecial                Special
 hi def link divFunction               Function
+hi def link gemixFunction             Function
 hi def link divConstants              Constants
 hi def link divBlockDeclaration       Statement
 hi def link divStartBlockStatement    Statement

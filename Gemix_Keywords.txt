@@ -1,0 +1,118 @@
+*** Gemix KEYWORDS ***
+
+compiler_options // Compiler_options
+setup_program    // Setup_program (OBSOLETE)
+program          // Program
+include          // para el soporte multi-fuente (NEW)
+import           // Import
+const            // Const
+typedef          // Typedef (NEW)
+declare          // Declare (NEW)
+
+global           // Global
+local            // Local
+public           // Public (NEW)
+private          // Private
+callback         // Callback (NEW)
+methods          // Methods (NEW)
+begin            // Begin
+end              // End
+process          // Process
+function         // Function
+method           // Method (NEW)
+
+alias            // Alias (NEW)
+signed           // Signed (NEW)
+unsigned         // Unsigned (NEW)
+bool             // Bool (NEW)
+byte             // Byte
+word             // Word
+int8             // Int8 (NEW)
+uint8            // UInt8 (NEW)
+int16            // Int16 (NEW)
+uint16           // UInt16 (NEW)
+int32            // Int32 (NEW)
+uint32           // UInt32 (NEW)
+int64            // Int64 (NEW)
+uint64           // UInt64 (NEW)
+//int128           // Int128 (TODO - NEW)
+//uint128          // UInt128 (TODO - NEW)
+int              // Int
+uint             // UInt (NEW)
+float            // Float (NEW)
+double           // Double (NEW)
+//decimal          // Decimal (TODO - NEW)
+string           // String
+struct           // Struct
+fobject          // FObject (NEW)
+void             // Void (NEW)
+
+elseif           // Elseif (NEW)
+else             // Else
+
+return           // Return
+
+loop             // Loop
+until            // Until
+while            // While
+repeat           // Repeat
+from             // From
+to               // To
+step             // Step
+for              // For
+
+if               // If
+
+switch           // Switch
+case             // Case
+default          // Default
+
+frame            // Frame
+
+break            // Break
+continue         // Continue
+
+clone            // Clone
+
+debug            // Debug
+
+dup              // Dup
+
+and              // And logico
+xor              // Xor logico
+or               // Or  logico
+
+neg              // Signo menos unario
+pointer          // Operador de indireccion, unario
+
+offset           // Desplazamiento unaria
+not              // Negacion logica unaria
+
+//add              // Suma exclusivamente binaria, pasa a + (TODO ?)
+//sub              // Resta exclusivamente binaria, pasa a - (TODO ?)
+//mul              // Multiplicaci?n exclusivamente binaria, pasa a * (TODO ?)
+//div              // Division entera, cociente (TODO ?)
+mod              // Modulo, resto de divisi?n entera (TODO ?)
+
+_eq              // Igual, operador binario de comparacion
+_ne              // Diferente
+_gt              // Mayor
+_lt              // Menor
+_le              // Menor o igual
+_ge              // Mayor o igual
+
+bnot             // Not bit a bit (NEW)
+band             // And bit a bit (NEW)
+bxor             // Xor bit a bit (NEW)
+bor              // Or  bit a bit (NEW)
+
+sizeof           // Funcion sizeof() interna, devuelve longitud
+//elementof        // devuelve el numero de elementos de un array (TODO)
+type             // Operador type
+
+id               // Operando que significa el codigo del proceso ejecutado
+whoami           // Operando que significa el cpdigo del proceso ejecutado
+this             // Operando que significa el codigo del proceso ejecutado (NEW)
+
+true             // boolean true  (NEW)
+false            // boolean false (NEW)
