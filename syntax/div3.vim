@@ -19,8 +19,8 @@ syn keyword divConditional if else switch case
 syn keyword divConditional IF ELSE SWITCH CASE
 syn keyword divRepeat do for do repeat while to until loop step
 syn keyword divRepeat DO FOR DO REPEAT WHILE TO UNTIL LOOP STEP
-syn keyword divBlockDeclaration typedef const global local private
-syn keyword divBlockDeclaration TYPEDEF CONST GLOBAL LOCAL PRIVATE
+syn keyword divBlockDeclaration typedef const global local private methods
+syn keyword divBlockDeclaration TYPEDEF CONST GLOBAL LOCAL PRIVATE METHODS
 syn keyword divStartBlockStatement begin
 syn keyword divStartBlockStatement BEGIN
 syn keyword divEndBlockStatement end
