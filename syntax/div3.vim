@@ -70,10 +70,11 @@ syn keyword divType INT8 INT16 INT32 INT64 UINT8 UINT16 UINT32 UINT64
 
 " Special
 syn keyword divSpecial _max_process _extended_conditions _simple_conditions
-syn keyword divSpecial _case_sensitive _ignore_errors _free_syntax _no_strfix
-syn keyword divSpecial _no_optimization _no_range_check _no_id_check
-syn keyword divSpecial _no_null_check _no_check
-syn keyword divSpecial _extended_conditions _use_cstyle _use_cstyle_matrix
+syn keyword divSpecial _case_sensitive _ignore_errors _free_syntax
+syn keyword divSpecial _no_strfix _no_optimization 
+syn keyword divSpecial _no_check _no_range_check _no_id_check _no_null_check
+syn keyword divSpecial _use_cstyle _use_cstyle_matrix _use_cstyle_conditions _use_cstyle_operators _use_cstyle_sizeof
+syn keyword divSpecial _use_always_int2string_conversions
 
 " Funtions
 syn keyword divFunction signal key load_pal load_fpg start_scroll stop_scroll out_region
@@ -108,7 +109,6 @@ syn keyword divConstants all_text all_drawing all_sound
 syn keyword divConstants g_wide g_height g_x_center g_y_center c_screen c_scroll c_m7 c_m8
 syn keyword divConstants partial_dump complete_dump no_restore partial_restore complete_restore
 syn keyword divConstants c_0 c_1 c_2 c_3 c_4 c_5 c_6 c_7 c_8 c_9
-syn keyword divConstants _max_process _extended_conditions _simple_conditions _case_sensitive _ignore_errors _free_sintax _no_check _no_strfix _no_optimization _no_range_check _no_id_check _no_null_check
 syn keyword divConstants seek_set seek_cur seek_end _normal _hidden _system _volid _subdir
 syn keyword divConstants fast_mixer quality_mixer sound_bits_8 sound_bits_16 _wave
 syn keyword divConstants _esc _f1 _f2 _f3 _f4 _f5 _f6 _f7 _f8 _f9 _f10 _f11 _f12 _prn_scr _scroll_lock
