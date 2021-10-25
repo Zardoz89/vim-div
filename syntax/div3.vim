@@ -15,8 +15,10 @@ syntax case ignore
 "syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>"
 
 " Keywords
-syn keyword divHeaderStatement compiler_options program import include setup_program
-syn keyword divHeaderStatement typedef declare const
+syn keyword divHeaderStatement compiler_options program import setup_program
+syn keyword divHeaderStatement const
+syn keyword divHeaderStatement include
+syn keyword divHeaderStatement typedef declare
 syn keyword divConditional if else elseif switch case
 syn keyword divRepeat do for do repeat while to until loop step
 syn keyword divBlockDeclaration global local public private callback methods
@@ -26,7 +28,6 @@ syn keyword divStatement process function method alias
 syn keyword divStatement break return continue
 syn keyword divStruct struct
 syn keyword gemixTypeDef type
-
 syn keyword divKeywords frame from clone
 
 syn keyword divDebug debug
@@ -44,15 +45,18 @@ syn region divString matchgroup=divString start=+"+ end=+"+ oneline
 syntax case ignore
 " Numbers and booleans
 syn keyword divBoolean true false
+
 syn match divNumber /\<\d\+\%([eE][+-]\=\d\+\)\=\>\|\<0[bB][01]\+\>\|\<0[oO]\o\+\>\|\<0[xX]\x\+\>/
+
 
 " Operators
 "   match single-char operators:  - + % < > ! & | ^ * =
 syn keyword divPointerOperator offset pointer
 syn match divMathOperator /[-+%<>!&|^*=]/
+"syn match divMathOperator "mod"
 syn match divLogicOperator  "&&\|||" "\|or\|xor\|and\|neg
-syn match gemixLogicOperator  "bnot\|band\|bxor\|bor"
-syn match gemixOperator "type\|id\|whoami\|this"
+"syn match gemixLogicOperator  "bnot\|band\|bxor\|bor"
+"syn match gemixOperator "type\|id\|whoami\|this"
 
 " Types and declarations
 syn keyword divType byte int word string
