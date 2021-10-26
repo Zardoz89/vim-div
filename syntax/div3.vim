@@ -1,10 +1,11 @@
-" DIV 2 , DIV DX 3.0 and Gemix Syntax Highlighting for Vim
+" DIV 2 & DIV DX 3.0 Syntax Highlighting for Vim
 " Vim syntax file
-" Language: DIV2 , DIV DX 3.0 and Gemix language
+" Language: DIV2 & DIV DX 3.0
 " Original Author: Casper van Beuzekom
 " Maintainer: Luis Panadero Guardeño
-" Latest Revision: 25-10-2021
+" Latest Revision: 26-10-2021
 
+" quit when a syntax file was already loaded
 if exists("b:current_syntax")
     finish
 endif
@@ -17,17 +18,14 @@ syntax case ignore
 " Keywords
 syn keyword divHeaderStatement compiler_options program import setup_program
 syn keyword divHeaderStatement const
-syn keyword divHeaderStatement include
-syn keyword divHeaderStatement typedef declare
-syn keyword divConditional if else elseif switch case
+syn keyword divConditional if else switch case
 syn keyword divRepeat do for do repeat while to until loop step
-syn keyword divBlockDeclaration global local public private callback methods
+syn keyword divBlockDeclaration global local public private
 syn keyword divStartBlockStatement begin
 syn keyword divEndBlockStatement end
-syn keyword divStatement process function method alias
+syn keyword divStatement process function
 syn keyword divStatement break return continue
 syn keyword divStruct struct
-syn keyword gemixTypeDef type
 syn keyword divKeywords frame from clone
 
 syn keyword divDebug debug
@@ -53,23 +51,16 @@ syn match divNumber /\<\d\+\%([eE][+-]\=\d\+\)\=\>\|\<0[bB][01]\+\>\|\<0[oO]\o\+
 "   match single-char operators:  - + % < > ! & | ^ * =
 syn keyword divPointerOperator offset pointer
 syn match divMathOperator /[-+%<>!&|^*=]/
-"syn match divMathOperator "mod"
 syn match divLogicOperator  "&&\|||" "\|or\|xor\|and\|neg
-"syn match gemixLogicOperator  "bnot\|band\|bxor\|bor"
-"syn match gemixOperator "type\|id\|whoami\|this"
 
 " Types and declarations
 syn keyword divType byte int word string
-syn keyword gemixType uint float double long bool signed unsigned fobject void
-syn keyword gemixType int8 int16 int32 int64 uint8 uint16 uint32 uint64
 
 " Special
 syn keyword divSpecial _max_process _extended_conditions _simple_conditions
 syn keyword divSpecial _case_sensitive _ignore_errors _free_syntax
 syn keyword divSpecial _no_strfix _no_optimization 
 syn keyword divSpecial _no_check _no_range_check _no_id_check _no_null_check
-syn keyword divSpecial _use_cstyle _use_cstyle_matrix _use_cstyle_conditions _use_cstyle_operators _use_cstyle_sizeof
-syn keyword divSpecial _use_always_int2string_conversions
 
 " Funtions
 syn keyword divFunction sizeof
@@ -96,7 +87,6 @@ syn keyword divFunction setdrive chdir mkdir remove disk_free memory_free ignore
 syn keyword divFunction sin cos tan asin acos atan atan2 draw delete_draw move_draw save_map
 syn keyword divFunction write_in_map calculate itoa change_channel malloc free encode encode_file
 syn keyword divFunction decode_file compress_file uncompress_file find_color load_screen force_pal
-syn keyword gemixFunction dup
 
 " Constants
 syn keyword divConstants m320x200 m320x240 m320x400 m360x240 m360x360 m376x282 m640x400 m640x480 m800x600 m1024x768
@@ -121,8 +111,6 @@ syn keyword divConstants _c_left _c_center _c_right _c_end _c_down _c_pgdn _c_in
 syn region divBlock start=+begin+ end=+end+ transparent contains=ALLBUT,divBlockDeclaration,divHeaderStatement
 
 " Highlighting
-let b:current_syntax = "div3"
-
 hi def link divBoolean                Boolean
 hi def link divComment                Comment
 hi def link divString                 String
@@ -134,25 +122,21 @@ hi def link divStatement              Statement
 hi def link divKeywords               Keyword
 hi def link divDebug                  Debug
 hi def link divStruct                 Structure
-hi def link gemixTypeDef              Structure
 hi def link divPointerOperator        Operator
 hi def link divMathOperator           Operator
 hi def link divLogicOperator          Operator
-hi def link gemixLogicOperator        Operator
-hi def link gemixOperator             Operator
 hi def link divTodoComment            Todo
 hi def link divType                   Type
-hi def link gemixType                 Type
 
 hi def link divSpecial                Special
 hi def link divFunction               Function
-hi def link gemixFunction             Function
 hi def link divConstants              Constants
 hi def link divBlockDeclaration       Statement
 hi def link divStartBlockStatement    Statement
 hi def link divEndBlockStatement      Statement
 "hi def link divIdentifier             Identifier
 
+let b:current_syntax = "div3"
 
 " WIP
 " Expression

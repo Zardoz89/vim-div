@@ -1,4 +1,4 @@
-# DIV 2/3 Syntax Highlighting for Vim
+# DIV 2/3 & Gemix Studio Syntax Highlighting for Vim
 
 Highlights language keywords, built-in commands, string literals, numbers, (most) operators, comments, todo comments and compiler options.  
 
