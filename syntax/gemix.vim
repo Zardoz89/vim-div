@@ -40,7 +40,7 @@ syn keyword gemixSpecial _use_cstyle _use_cstyle_matrix _use_cstyle_conditions _
 syn keyword gemixSpecial _use_always_int2string_conversions
 
 " Funtions
-syn keyword gemixFunction dup
+syn keyword gemixFunction dup keydown
 
 " Constants
 
