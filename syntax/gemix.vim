@@ -25,6 +25,12 @@ syn keyword gemixStatement method alias
 syn keyword gemixTypeDef type
 
 
+" DIV Only supports integers numbers
+
+syn match gemixNumber "\d\+\(u\=l\{0,1}\|f\)\>" display
+syn match gemixNumber "\v<\d+\.\d+>" display
+syn match gemixNumber "\v<\d*\.?\d+([Ee]-?)?\d+>" display
+
 " Types and declarations
 syn keyword gemixType uint float double long bool signed unsigned fobject void
 syn keyword gemixType int8 int16 int32 int64 uint8 uint16 uint32 uint64
@@ -43,6 +49,7 @@ hi def link gemixConditional          Conditional
 hi def link gemixHeaderStatement      Statement
 hi def link gemixStatement            Statement
 hi def link gemixTypeDef              Structure
+hi def link gemixNumber               Number
 hi def link gemixType                 Type
 
 hi def link gemixSpecial              Special

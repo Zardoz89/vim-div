@@ -44,8 +44,8 @@ syntax case ignore
 " Numbers and booleans
 syn keyword divBoolean true false
 
-syn match divNumber /\<\d\+\%([eE][+-]\=\d\+\)\=\>\|\<0[bB][01]\+\>\|\<0[oO]\o\+\>\|\<0[xX]\x\+\>/
-
+" DIV Only supports integers numbers
+syn match divNumber "\v<\d+>" display
 
 " Operators
 "   match single-char operators:  - + % < > ! & | ^ * =
