@@ -131,7 +131,7 @@ hi def link divType                   Type
 hi def link divSpecial                Special
 hi def link divFunction               Function
 hi def link divConstants              Constants
-hi def link divBlockDeclaration       Statement
+hi def link divBlockDeclaration       StorageClass
 hi def link divStartBlockStatement    Statement
 hi def link divEndBlockStatement      Statement
 "hi def link divIdentifier             Identifier
