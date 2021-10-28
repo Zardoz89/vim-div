@@ -28,6 +28,23 @@ syn region divString matchgroup=divString start=+"+ end=+"+ skip="//" oneline
 
 " ** Regions **
 
+syn region divConstRootBlock start="^\<const\>" end="^\ze\<begin\>" end="^\ze\<private\>" end="^\ze\<local\>" end="^\ze\<global\>" transparent fold keepend
+      \ contains=divConstDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+
+syn region divGlobalRootBlock start="^\<global\>" end="^\ze\<begin\>" end="^\ze\<private\>" end="^\ze\<local\>" transparent fold keepend
+      \ contains=divGlobalDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+
+syn region divLocalRootBlock start="^\<local\>" end="^\ze\<begin\>" end="^\ze\<private\>" transparent fold keepend
+      \ contains=divLocalDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+
+syn region divPrivateRootBlock start="^\<private\>" end="^\ze\<begin\>" transparent fold keepend
+      \ contains=divPrivateDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+
+syn region divBeginEndRootBlock start="^\<begin\>" end="^\<end\>" transparent fold keepend
+      \ contains=ALLBUT,divHeaderStatement,@divRootBlocks,divDecParamsList
+
+syn cluster divRootBlocks contains=divConstRootBlock,divGlobalDeclaration,divLocalDeclaration,divPrivateBlock,divBeginEndRootBlock,divFunctionBlock,divProcessBlock
+
 syn region divFunctionBlock start="^\<function\>" end="^\<end\>" transparent fold keepend
       \ contains=divFunction,divDecParamsList,divPrivateBlock,divBeginEndBlock
 
@@ -36,7 +53,7 @@ syn region divPrivateBlock start="^\<private\>" end="^\ze\<begin\>" transparent 
       \ skipwhite skipempty nextgroup=divBeginEndBlock
 
 syn region divBeginEndBlock start="^\<begin\>" end="^\<end\>" transparent fold keepend contained
-      \ contains=ALLBUT,divHeaderStatement,divConstDeclaration,divGlobalDeclaration,divLocalDeclaration,divPublicDeclaration,divFunctionBlock,divProcessBlock,divDecParamsList
+      \ contains=ALLBUT,divHeaderStatement,@divRootBlocks,divDecParamsList
 
 syn region divProcessBlock start="^\<process\>" end="^\<end\>" transparent fold keepend
       \ contains=divProcess,divDecParamsList,divPrivateBlock,divBeginEndBlock
@@ -55,11 +72,10 @@ syn match divIdentifier "\<\K\k*\>" contained
 syn keyword divHeaderStatement compiler_options program import setup_program
 syn keyword divConditional if else switch case
 syn keyword divRepeat do for do repeat while to until loop step
-syn keyword divConstDeclaration     const
-syn keyword divGlobalDeclaration  global
-syn keyword divLocalDeclaration   local
-syn keyword divPublicDeclaration  public
-syn keyword divPrivateDeclaration private contained
+syn keyword divConstDeclaration     const contained
+syn keyword divGlobalDeclaration    global contained
+syn keyword divLocalDeclaration     local contained
+syn keyword divPrivateDeclaration   private contained
 syn keyword divBegin begin contained
 syn keyword divEnd end contained
 syn keyword divProcess process skipwhite skipempty nextgroup=divIdentifier contained
@@ -169,7 +185,6 @@ hi def link divConstants              Constants
 hi def link divConstDeclaration       Keyword
 hi def link divGlobalDeclaration      Keyword
 hi def link divLocalDeclaration       Keyword
-hi def link divPublicDeclaration      Keyword
 hi def link divPrivateDeclaration     Keyword
 
 hi def link divProcess                Keyword
