@@ -33,7 +33,7 @@ syn region divPrivateBlock start="^\<private\>" end="^\ze\<begin\>" transparent 
       \ contains=divPrivateDeclaration,divType,divAssignament,divNumber,divString
       \ skipwhite skipempty nextgroup=divBeginEndBlock
 syn region divBeginEndBlock start="^\<begin\>" end="^\<end\>" transparent fold keepend contained
-      \ contains=ALLBUT,divHeaderStatement,divConstStatement,divGlobalDeclaration,divLocalDeclaration,divPublicDeclaration,divFunctionBlock
+      \ contains=ALLBUT,divHeaderStatement,divConstDeclaration,divGlobalDeclaration,divLocalDeclaration,divPublicDeclaration,divFunctionBlock
 
 syn region divProcessBlock start="^\<process\>" end="^\<end\>" transparent fold keepend
       \ contains=divProcess,divParamsList,divPrivateBlock,divBeginEndBlock
@@ -48,7 +48,7 @@ syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>" contained
 syn keyword divHeaderStatement compiler_options program import setup_program
 syn keyword divConditional if else switch case
 syn keyword divRepeat do for do repeat while to until loop step
-syn keyword divConstStatement     const
+syn keyword divConstDeclaration     const
 syn keyword divGlobalDeclaration  global
 syn keyword divLocalDeclaration   local
 syn keyword divPublicDeclaration  public
@@ -155,12 +155,11 @@ hi def link divType                   Type
 hi def link divSpecial                Special
 hi def link divFunctions              Function
 hi def link divConstants              Constants
-hi def link divBlockDeclaration       StorageClass
-hi def link divConstStatement         StorageClass
-hi def link divGlobalDeclaration      StorageClass
-hi def link divLocalDeclaration       StorageClass
-hi def link divPublicDeclaration      StorageClass
-hi def link divPrivateDeclaration     StorageClass
+hi def link divConstDeclaration       Keyword
+hi def link divGlobalDeclaration      Keyword
+hi def link divLocalDeclaration       Keyword
+hi def link divPublicDeclaration      Keyword
+hi def link divPrivateDeclaration     Keyword
 
 hi def link divProcess                Keyword
 hi def link divFunction               Keyword
