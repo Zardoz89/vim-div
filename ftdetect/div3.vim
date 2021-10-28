@@ -4,6 +4,14 @@ autocmd BufRead,BufNewFile *.[pP][rR][gG] set filetype=gemix
 " source code
 autocmd BufRead,BufNewFile *.[pP][rR][gG] if !search('gemix\|\_use_cstyle\|\include\|\typedef\|\declare\|\methods\|\callback\|\keydown\|\u\?int8\|\u\?int16\|\u\?int32\|\u\?int64\|\float\|\double', 'nw') | set filetype=div3 | endif
 
-" Fix the problem with long comments and regions
-autocmd BufEnter, *.[pP][rR][gG] :syntax sync fromstart
+" Try to auto set encoding for working with old 8bit encodings
+function! CheckFileEncoding()
+  if exists('b:fenc_at_read') && &fileencoding != b:fenc_at_read
+    exec 'e! ++enc=' . &fileencoding
+    unlet b:fenc_at_read
+  endif
+endfunction
+autocmd BufRead     *.[pP][rR][gG] let b:fenc_at_read=&fileencoding
+autocmd BufWinEnter *.[pP][rR][gG] call CheckFileEncoding()
+
 

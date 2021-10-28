@@ -1,9 +1,8 @@
 " Gemix Syntax Highlighting for Vim
 " Vim syntax file
 " Language: Gemix language
-" Original Author: Casper van Beuzekom
 " Original Author: Luis Panadero Guardeño
-" Latest Revision: 26-10-2021
+" Latest Revision: 28-10-2021
 
 " quit when a syntax file was already loaded
 if exists("b:current_syntax")
@@ -20,7 +19,7 @@ syntax case ignore
 syn keyword gemixHeaderStatement include
 syn keyword gemixHeaderStatement typedef declare
 syn keyword gemixConditional elseif
-syn keyword gemixBlockDeclaration public private callback methods
+syn keyword gemixBlockDeclaration callback methods
 syn keyword gemixStatement method alias
 syn keyword gemixTypeDef type
 

@@ -3,7 +3,7 @@
 " Language: DIV2 & DIV DX 3.0
 " Original Author: Casper van Beuzekom
 " Maintainer: Luis Panadero Guardeño
-" Latest Revision: 26-10-2021
+" Latest Revision: 28-10-2021
 
 " quit when a syntax file was already loaded
 if exists("b:current_syntax")
@@ -11,6 +11,8 @@ if exists("b:current_syntax")
 endif
 
 syntax case ignore
+" Fix the problem with long comments and regions
+syntax sync fromstart ccomment divComment
 
 " Identifiers
 "syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>"
@@ -33,14 +35,14 @@ syn keyword divDebug debug
 " Comments
 syntax case match
 syn keyword divTodoComment contained TODO FIXME TBD NOTE
-syn region divComment start=/\/\// end=/$/ contains=divTodoComment,@Spell extend keepend
-syn region divComment start=/\/\*/ end=/\*\// contains=divTodoComment,@Spell extend keepend
-
-" Strings
-"syn region divString start=+"+ skip=+\\\("\|$\)+ end=+"\|$+
-syn region divString matchgroup=divString start=+"+ end=+"+ oneline
 
 syntax case ignore
+syn region divLineComment start="//" end="$" contains=divTodoComment,@Spell keepend
+syn region divComment start="/\*"  end="\*/"  contains=divTodoComment,@Spell
+
+" Strings
+syn region divString matchgroup=divString start=+"+ end=+"+ skip="//" oneline
+
 " Numbers and booleans
 syn keyword divBoolean true false
 
@@ -49,9 +51,11 @@ syn match divNumber "\v<\d+>" display
 
 " Operators
 "   match single-char operators:  - + % < > ! & | ^ * =
+syn match divAssignament "="
 syn keyword divPointerOperator offset pointer
 syn match divMathOperator /[-+%<>!&|^*=]/
-syn match divLogicOperator  "&&\|||" "\|or\|xor\|and\|neg
+syn match divLogicOperator  "&&\|||"
+syn match divLogicOperator "or\|xor\|and\|neg"
 
 " Types and declarations
 syn keyword divType byte int word string
@@ -112,6 +116,7 @@ syn region divBlock start=+begin+ end=+end+ transparent contains=ALLBUT,divBlock
 
 " Highlighting
 hi def link divBoolean                Boolean
+hi def link divLineComment            Comment
 hi def link divComment                Comment
 hi def link divString                 String
 hi def link divConditional            Conditional
@@ -122,6 +127,7 @@ hi def link divStatement              Statement
 hi def link divKeywords               Keyword
 hi def link divDebug                  Debug
 hi def link divStruct                 Structure
+hi def link divAssignament            Delimiter
 hi def link divPointerOperator        Operator
 hi def link divMathOperator           Operator
 hi def link divLogicOperator          Operator
