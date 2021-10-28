@@ -14,24 +14,6 @@ syntax case ignore
 " Fix the problem with long comments and regions
 syntax sync fromstart ccomment divComment
 
-" Identifiers
-"syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>"
-
-" Keywords
-syn keyword divHeaderStatement compiler_options program import setup_program
-syn keyword divHeaderStatement const
-syn keyword divConditional if else switch case
-syn keyword divRepeat do for do repeat while to until loop step
-syn keyword divBlockDeclaration global local public private
-syn keyword divStartBlockStatement begin
-syn keyword divEndBlockStatement end
-syn keyword divStatement process function
-syn keyword divStatement break return continue
-syn keyword divStruct struct
-syn keyword divKeywords frame from clone
-
-syn keyword divDebug debug
-
 " Comments
 syntax case match
 syn keyword divTodoComment contained TODO FIXME TBD NOTE
@@ -43,6 +25,45 @@ syn region divComment start="/\*"  end="\*/"  contains=divTodoComment,@Spell
 " Strings
 syn region divString matchgroup=divString start=+"+ end=+"+ skip="//" oneline
 
+" ** Regions **
+
+syn region divFunctionBlock start="^\<function\>" end="^\<end\>" transparent fold keepend
+      \ contains=divFunction,divParamsList,divPrivateBlock,divBeginEndBlock
+syn region divPrivateBlock start="^\<private\>" end="^\ze\<begin\>" transparent fold keepend contained
+      \ contains=divPrivateDeclaration,divType,divAssignament,divNumber,divString
+      \ skipwhite skipempty nextgroup=divBeginEndBlock
+syn region divBeginEndBlock start="^\<begin\>" end="^\<end\>" transparent fold keepend contained
+      \ contains=ALLBUT,divHeaderStatement,divConstStatement,divGlobalDeclaration,divLocalDeclaration,divPublicDeclaration,divFunctionBlock
+
+syn region divProcessBlock start="^\<process\>" end="^\<end\>" transparent fold keepend
+      \ contains=divProcess,divParamsList,divPrivateBlock,divBeginEndBlock
+
+syn region divParamsList start="(" end=")" skip="//" transparent contained
+      \ contains=divIdentifier
+
+" Identifiers
+syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>" contained
+
+" Keywords
+syn keyword divHeaderStatement compiler_options program import setup_program
+syn keyword divConditional if else switch case
+syn keyword divRepeat do for do repeat while to until loop step
+syn keyword divConstStatement     const
+syn keyword divGlobalDeclaration  global
+syn keyword divLocalDeclaration   local
+syn keyword divPublicDeclaration  public
+syn keyword divPrivateDeclaration private contained
+syn keyword divBegin begin contained
+syn keyword divEnd end contained
+syn keyword divProcess process skipwhite skipempty nextgroup=divIdentifier contained
+syn keyword divFunction function skipwhite skipempty nextgroup=divIdentifier contained
+syn keyword divStatement break return continue
+syn keyword divStruct struct
+syn keyword divKeywords frame from clone
+
+syn keyword divDebug debug
+
+
 " Numbers and booleans
 syn keyword divBoolean true false
 
@@ -51,11 +72,11 @@ syn match divNumber "\v<\d+>" display
 
 " Operators
 "   match single-char operators:  - + % < > ! & | ^ * =
-syn match divAssignament "="
+syn match divAssignament "=" "display contained contains=NONE
 syn keyword divPointerOperator offset pointer
-syn match divMathOperator /[-+%<>!&|^*=]/
-syn match divLogicOperator  "&&\|||"
-syn match divLogicOperator "or\|xor\|and\|neg"
+syn match divMathOperator /[-+%<>!&|^*=]/ "display contained contains=NONE
+syn match divLogicOperator  "&&\|||"  "display contained contains=NONE
+syn match divLogicOperator "or\|xor\|and\|neg" "display contained contains=NONE
 
 " Types and declarations
 syn keyword divType byte int word string
@@ -66,31 +87,31 @@ syn keyword divSpecial _case_sensitive _ignore_errors _free_syntax
 syn keyword divSpecial _no_strfix _no_optimization 
 syn keyword divSpecial _no_check _no_range_check _no_id_check _no_null_check
 
-" Funtions
-syn keyword divFunction sizeof
-syn keyword divFunction signal key load_pal load_fpg start_scroll stop_scroll out_region
-syn keyword divFunction graphic_info collision get_id get_distx get_disty get_angle get_dist fade
-syn keyword divFunction load_fnt write write_int delete_text move_text unload_fpg rand define_region
-syn keyword divFunction xput put put_screen map_xput map_put put_pixel get_pixel map_put_pixel
-syn keyword divFunction map_get_pixel get_point clear_screen save load set_mode load_pcm unload_pcm
-syn keyword divFunction sound stop_sound change_sound set_fps start_fli frame_fli end_fli reset_fli
-syn keyword divFunction system refresh_scroll fget_dist fget_angle play_cd stop_cd is_playing_cd
-syn keyword divFunction start_mode7 stop_mode7 advance abs fade_on fade_off rand_seed sqrt pow
-syn keyword divFunction map_block_copy move_scroll near_angle let_me_alone exit roll_palette
-syn keyword divFunction get_real_point get_joy_button get_joy_position convert_palette load_map
-syn keyword divFunction reset_sound unload_map unload_fnt set_volume unload_wav load_wav load_pcx
-syn keyword divFunction unload_pcx set_color net_join_game net_get_games stop_mode8 xadvance char
-syn keyword divFunction path_find path_line path_free new_map load_wld start_mode8 go_to_flag
-syn keyword divFunction set_sector_height get_sector_height set_point_m8 get_point_m8 set_fog
-syn keyword divFunction set_sector_texture get_sector_texture set_wall_texture get_wall_texture
-syn keyword divFunction set_env_color strcpy strcat strlen strcmp strchr strstr strset upper lower
-syn keyword divFunction strdel screen_copy qsort load_song unload_song song stop_song set_song_pos
-syn keyword divFunction get_song_pos get_song_line is_playing_sound is_playing_song fopen fclose
-syn keyword divFunction fread fwrite fseek ftell filelength flush get_dirinfo get_fileinfo getdrive
-syn keyword divFunction setdrive chdir mkdir remove disk_free memory_free ignore_error save_pcx
-syn keyword divFunction sin cos tan asin acos atan atan2 draw delete_draw move_draw save_map
-syn keyword divFunction write_in_map calculate itoa change_channel malloc free encode encode_file
-syn keyword divFunction decode_file compress_file uncompress_file find_color load_screen force_pal
+" Functions
+syn keyword divFunctions sizeof
+syn keyword divFunctions signal key load_pal load_fpg start_scroll stop_scroll out_region
+syn keyword divFunctions graphic_info collision get_id get_distx get_disty get_angle get_dist fade
+syn keyword divFunctions load_fnt write write_int delete_text move_text unload_fpg rand define_region
+syn keyword divFunctions xput put put_screen map_xput map_put put_pixel get_pixel map_put_pixel
+syn keyword divFunctions map_get_pixel get_point clear_screen save load set_mode load_pcm unload_pcm
+syn keyword divFunctions sound stop_sound change_sound set_fps start_fli frame_fli end_fli reset_fli
+syn keyword divFunctions system refresh_scroll fget_dist fget_angle play_cd stop_cd is_playing_cd
+syn keyword divFunctions start_mode7 stop_mode7 advance abs fade_on fade_off rand_seed sqrt pow
+syn keyword divFunctions map_block_copy move_scroll near_angle let_me_alone exit roll_palette
+syn keyword divFunctions get_real_point get_joy_button get_joy_position convert_palette load_map
+syn keyword divFunctions reset_sound unload_map unload_fnt set_volume unload_wav load_wav load_pcx
+syn keyword divFunctions unload_pcx set_color net_join_game net_get_games stop_mode8 xadvance char
+syn keyword divFunctions path_find path_line path_free new_map load_wld start_mode8 go_to_flag
+syn keyword divFunctions set_sector_height get_sector_height set_point_m8 get_point_m8 set_fog
+syn keyword divFunctions set_sector_texture get_sector_texture set_wall_texture get_wall_texture
+syn keyword divFunctions set_env_color strcpy strcat strlen strcmp strchr strstr strset upper lower
+syn keyword divFunctions strdel screen_copy qsort load_song unload_song song stop_song set_song_pos
+syn keyword divFunctions get_song_pos get_song_line is_playing_sound is_playing_song fopen fclose
+syn keyword divFunctions fread fwrite fseek ftell filelength flush get_dirinfo get_fileinfo getdrive
+syn keyword divFunctions setdrive chdir mkdir remove disk_free memory_free ignore_error save_pcx
+syn keyword divFunctions sin cos tan asin acos atan atan2 draw delete_draw move_draw save_map
+syn keyword divFunctions write_in_map calculate itoa change_channel malloc free encode encode_file
+syn keyword divFunctions decode_file compress_file uncompress_file find_color load_screen force_pal
 
 " Constants
 syn keyword divConstants m320x200 m320x240 m320x400 m360x240 m360x360 m376x282 m640x400 m640x480 m800x600 m1024x768
@@ -110,9 +131,6 @@ syn keyword divConstants _z _x _c _v _b _n _m _comma _point _slash _r_shift _con
 syn keyword divConstants _ins _home _pgup _del _end _pgdn _up _down _left _right _num_lock
 syn keyword divConstants _c_backslash _c_asterisk _c_minus _c_home _c_up _c_pgup
 syn keyword divConstants _c_left _c_center _c_right _c_end _c_down _c_pgdn _c_ins _c_del _c_plus _c_enter
-
-" Regions
-syn region divBlock start=+begin+ end=+end+ transparent contains=ALLBUT,divBlockDeclaration,divHeaderStatement
 
 " Highlighting
 hi def link divBoolean                Boolean
@@ -135,12 +153,21 @@ hi def link divTodoComment            Todo
 hi def link divType                   Type
 
 hi def link divSpecial                Special
-hi def link divFunction               Function
+hi def link divFunctions              Function
 hi def link divConstants              Constants
 hi def link divBlockDeclaration       StorageClass
-hi def link divStartBlockStatement    Statement
-hi def link divEndBlockStatement      Statement
-"hi def link divIdentifier             Identifier
+hi def link divConstStatement         StorageClass
+hi def link divGlobalDeclaration      StorageClass
+hi def link divLocalDeclaration       StorageClass
+hi def link divPublicDeclaration      StorageClass
+hi def link divPrivateDeclaration     StorageClass
+
+hi def link divProcess                Keyword
+hi def link divFunction               Keyword
+hi def link divBegin                  Keyword
+hi def link divEnd                    Keyword
+hi def link divIdentifier             Identifier
+
 
 let b:current_syntax = "div3"
 
