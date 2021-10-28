@@ -29,16 +29,16 @@ syn region divString matchgroup=divString start=+"+ end=+"+ skip="//" oneline
 " ** Regions **
 
 syn region divConstRootBlock start="^\<const\>" end="^\ze\<begin\>" end="^\ze\<private\>" end="^\ze\<local\>" end="^\ze\<global\>" transparent fold keepend
-      \ contains=divConstDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+      \ contains=divConstDeclaration,divType,divIdentifier,divAssignament,@divOperators,divNumber,divString,@divComments
 
 syn region divGlobalRootBlock start="^\<global\>" end="^\ze\<begin\>" end="^\ze\<private\>" end="^\ze\<local\>" transparent fold keepend
-      \ contains=divGlobalDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+      \ contains=divGlobalDeclaration,divType,divIdentifier,divAssignament,@divOperators,divNumber,divString,@divComments
 
 syn region divLocalRootBlock start="^\<local\>" end="^\ze\<begin\>" end="^\ze\<private\>" transparent fold keepend
-      \ contains=divLocalDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+      \ contains=divLocalDeclaration,divType,divIdentifier,divAssignament,@divOperators,divNumber,divString,@divComments
 
 syn region divPrivateRootBlock start="^\<private\>" end="^\ze\<begin\>" transparent fold keepend
-      \ contains=divPrivateDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+      \ contains=divPrivateDeclaration,divType,divIdentifier,divAssignament,@divOperators,divNumber,divString,@divComments
 
 syn region divBeginEndRootBlock start="^\<begin\>" end="^\<end\>" transparent fold keepend
       \ contains=ALLBUT,divHeaderStatement,@divRootBlocks,divDecParamsList
@@ -49,7 +49,7 @@ syn region divFunctionBlock start="^\<function\>" end="^\<end\>" transparent fol
       \ contains=divFunction,divDecParamsList,divPrivateBlock,divBeginEndBlock
 
 syn region divPrivateBlock start="^\<private\>" end="^\ze\<begin\>" transparent fold keepend contained
-      \ contains=divPrivateDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
+      \ contains=divPrivateDeclaration,divType,divIdentifier,divAssignament,@divOperators,divNumber,divString,@divComments
       \ skipwhite skipempty nextgroup=divBeginEndBlock
 
 syn region divBeginEndBlock start="^\<begin\>" end="^\<end\>" transparent fold keepend contained
@@ -94,13 +94,12 @@ syn keyword divBoolean true false
 syn match divNumber "\v<\d+>" display
 
 " Operators
-"   match single-char operators:  - + % < > ! & | ^ * =
-syn match divAssignament "=" "display contained contains=NONE
-syn keyword divPointerOperator offset pointer
-syn match divMathOperator "[-+%<>!&|^*=]" display contained contains=NONE
-syn match divEqualsOperator "==" display contained contains=NONE
-syn match divLogicOperator  "&&\|||"  display contained contains=NONE
-syn match divLogicOperator "not\|or\|xor\|and\|neg" display contained contains=NONE
+syn match divAssignament        "=" "display contained contains=NONE
+syn keyword divPointerOperator  offset pointer
+syn match divMathOperator       "[-+%<>!&|^*=]" display contained contains=NONE
+syn match divEqualsOperator     "==" display contained contains=NONE
+syn match divLogicOperator      "&&\|||"  display contained contains=NONE
+syn match divLogicOperator      "not\|or\|xor\|and\|neg" display contained contains=NONE
 
 syn cluster divOperators contains=divPointerOperator,divEqualsOperator,divMathOperator,divLogicOperator
 
