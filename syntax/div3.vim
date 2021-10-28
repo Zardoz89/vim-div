@@ -29,11 +29,13 @@ syn region divString matchgroup=divString start=+"+ end=+"+ skip="//" oneline
 
 syn region divFunctionBlock start="^\<function\>" end="^\<end\>" transparent fold keepend
       \ contains=divFunction,divParamsList,divPrivateBlock,divBeginEndBlock
+
 syn region divPrivateBlock start="^\<private\>" end="^\ze\<begin\>" transparent fold keepend contained
-      \ contains=divPrivateDeclaration,divType,divAssignament,divNumber,divString
+      \ contains=divPrivateDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,divLineComment,divComment
       \ skipwhite skipempty nextgroup=divBeginEndBlock
+
 syn region divBeginEndBlock start="^\<begin\>" end="^\<end\>" transparent fold keepend contained
-      \ contains=ALLBUT,divHeaderStatement,divConstDeclaration,divGlobalDeclaration,divLocalDeclaration,divPublicDeclaration,divFunctionBlock
+      \ contains=ALLBUT,divHeaderStatement,divConstDeclaration,divGlobalDeclaration,divLocalDeclaration,divPublicDeclaration,divFunctionBlock,divProcessBlock,divParamsList
 
 syn region divProcessBlock start="^\<process\>" end="^\<end\>" transparent fold keepend
       \ contains=divProcess,divParamsList,divPrivateBlock,divBeginEndBlock
@@ -42,7 +44,7 @@ syn region divParamsList start="(" end=")" skip="//" transparent contained
       \ contains=divIdentifier
 
 " Identifiers
-syn match divIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>" contained
+syn match divIdentifier "\<\K\k*\>" contained
 
 " Keywords
 syn keyword divHeaderStatement compiler_options program import setup_program
