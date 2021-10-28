@@ -21,6 +21,7 @@ syn keyword divTodoComment contained TODO FIXME TBD NOTE
 syntax case ignore
 syn region divLineComment start="//" end="$" contains=divTodoComment,@Spell keepend
 syn region divComment start="/\*"  end="\*/"  contains=divTodoComment,@Spell
+syn cluster divComments contains=divLineComment,divComment
 
 " Strings
 syn region divString matchgroup=divString start=+"+ end=+"+ skip="//" oneline
@@ -28,20 +29,24 @@ syn region divString matchgroup=divString start=+"+ end=+"+ skip="//" oneline
 " ** Regions **
 
 syn region divFunctionBlock start="^\<function\>" end="^\<end\>" transparent fold keepend
-      \ contains=divFunction,divParamsList,divPrivateBlock,divBeginEndBlock
+      \ contains=divFunction,divDecParamsList,divPrivateBlock,divBeginEndBlock
 
 syn region divPrivateBlock start="^\<private\>" end="^\ze\<begin\>" transparent fold keepend contained
-      \ contains=divPrivateDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,divLineComment,divComment
+      \ contains=divPrivateDeclaration,divType,divIdentifier,divAssignament,divNumber,divString,@divComments
       \ skipwhite skipempty nextgroup=divBeginEndBlock
 
 syn region divBeginEndBlock start="^\<begin\>" end="^\<end\>" transparent fold keepend contained
-      \ contains=ALLBUT,divHeaderStatement,divConstDeclaration,divGlobalDeclaration,divLocalDeclaration,divPublicDeclaration,divFunctionBlock,divProcessBlock,divParamsList
+      \ contains=ALLBUT,divHeaderStatement,divConstDeclaration,divGlobalDeclaration,divLocalDeclaration,divPublicDeclaration,divFunctionBlock,divProcessBlock,divDecParamsList
 
 syn region divProcessBlock start="^\<process\>" end="^\<end\>" transparent fold keepend
-      \ contains=divProcess,divParamsList,divPrivateBlock,divBeginEndBlock
+      \ contains=divProcess,divDecParamsList,divPrivateBlock,divBeginEndBlock
+
+syn region divDecParamsList start="(" end=")" skip="//" transparent contained
+      \ contains=divType,divIdentifier,@divComments
 
 syn region divParamsList start="(" end=")" skip="//" transparent contained
-      \ contains=divIdentifier
+      \ contains=divIdentifier,divString,divNumber,@divOperators,@divComments
+
 
 " Identifiers
 syn match divIdentifier "\<\K\k*\>" contained
@@ -76,9 +81,12 @@ syn match divNumber "\v<\d+>" display
 "   match single-char operators:  - + % < > ! & | ^ * =
 syn match divAssignament "=" "display contained contains=NONE
 syn keyword divPointerOperator offset pointer
-syn match divMathOperator /[-+%<>!&|^*=]/ "display contained contains=NONE
-syn match divLogicOperator  "&&\|||"  "display contained contains=NONE
-syn match divLogicOperator "or\|xor\|and\|neg" "display contained contains=NONE
+syn match divMathOperator "[-+%<>!&|^*=]" display contained contains=NONE
+syn match divEqualsOperator "==" display contained contains=NONE
+syn match divLogicOperator  "&&\|||"  display contained contains=NONE
+syn match divLogicOperator "not\|or\|xor\|and\|neg" display contained contains=NONE
+
+syn cluster divOperators contains=divPointerOperator,divEqualsOperator,divMathOperator,divLogicOperator
 
 " Types and declarations
 syn keyword divType byte int word string
@@ -90,30 +98,30 @@ syn keyword divSpecial _no_strfix _no_optimization
 syn keyword divSpecial _no_check _no_range_check _no_id_check _no_null_check
 
 " Functions
-syn keyword divFunctions sizeof
-syn keyword divFunctions signal key load_pal load_fpg start_scroll stop_scroll out_region
-syn keyword divFunctions graphic_info collision get_id get_distx get_disty get_angle get_dist fade
-syn keyword divFunctions load_fnt write write_int delete_text move_text unload_fpg rand define_region
-syn keyword divFunctions xput put put_screen map_xput map_put put_pixel get_pixel map_put_pixel
-syn keyword divFunctions map_get_pixel get_point clear_screen save load set_mode load_pcm unload_pcm
-syn keyword divFunctions sound stop_sound change_sound set_fps start_fli frame_fli end_fli reset_fli
-syn keyword divFunctions system refresh_scroll fget_dist fget_angle play_cd stop_cd is_playing_cd
-syn keyword divFunctions start_mode7 stop_mode7 advance abs fade_on fade_off rand_seed sqrt pow
-syn keyword divFunctions map_block_copy move_scroll near_angle let_me_alone exit roll_palette
-syn keyword divFunctions get_real_point get_joy_button get_joy_position convert_palette load_map
-syn keyword divFunctions reset_sound unload_map unload_fnt set_volume unload_wav load_wav load_pcx
-syn keyword divFunctions unload_pcx set_color net_join_game net_get_games stop_mode8 xadvance char
-syn keyword divFunctions path_find path_line path_free new_map load_wld start_mode8 go_to_flag
-syn keyword divFunctions set_sector_height get_sector_height set_point_m8 get_point_m8 set_fog
-syn keyword divFunctions set_sector_texture get_sector_texture set_wall_texture get_wall_texture
-syn keyword divFunctions set_env_color strcpy strcat strlen strcmp strchr strstr strset upper lower
-syn keyword divFunctions strdel screen_copy qsort load_song unload_song song stop_song set_song_pos
-syn keyword divFunctions get_song_pos get_song_line is_playing_sound is_playing_song fopen fclose
-syn keyword divFunctions fread fwrite fseek ftell filelength flush get_dirinfo get_fileinfo getdrive
-syn keyword divFunctions setdrive chdir mkdir remove disk_free memory_free ignore_error save_pcx
-syn keyword divFunctions sin cos tan asin acos atan atan2 draw delete_draw move_draw save_map
-syn keyword divFunctions write_in_map calculate itoa change_channel malloc free encode encode_file
-syn keyword divFunctions decode_file compress_file uncompress_file find_color load_screen force_pal
+syn keyword divFunctions skipwhite nextgroup=divParamsList sizeof frame
+syn keyword divFunctions skipwhite nextgroup=divParamsList signal key load_pal load_fpg start_scroll stop_scroll out_region
+syn keyword divFunctions skipwhite nextgroup=divParamsList graphic_info collision get_id get_distx get_disty get_angle get_dist fade
+syn keyword divFunctions skipwhite nextgroup=divParamsList load_fnt write write_int delete_text move_text unload_fpg rand define_region
+syn keyword divFunctions skipwhite nextgroup=divParamsList xput put put_screen map_xput map_put put_pixel get_pixel map_put_pixel
+syn keyword divFunctions skipwhite nextgroup=divParamsList map_get_pixel get_point clear_screen save load set_mode load_pcm unload_pcm
+syn keyword divFunctions skipwhite nextgroup=divParamsList sound stop_sound change_sound set_fps start_fli frame_fli end_fli reset_fli
+syn keyword divFunctions skipwhite nextgroup=divParamsList system refresh_scroll fget_dist fget_angle play_cd stop_cd is_playing_cd
+syn keyword divFunctions skipwhite nextgroup=divParamsList start_mode7 stop_mode7 advance abs fade_on fade_off rand_seed sqrt pow
+syn keyword divFunctions skipwhite nextgroup=divParamsList map_block_copy move_scroll near_angle let_me_alone exit roll_palette
+syn keyword divFunctions skipwhite nextgroup=divParamsList get_real_point get_joy_button get_joy_position convert_palette load_map
+syn keyword divFunctions skipwhite nextgroup=divParamsList reset_sound unload_map unload_fnt set_volume unload_wav load_wav load_pcx
+syn keyword divFunctions skipwhite nextgroup=divParamsList unload_pcx set_color net_join_game net_get_games stop_mode8 xadvance char
+syn keyword divFunctions skipwhite nextgroup=divParamsList path_find path_line path_free new_map load_wld start_mode8 go_to_flag
+syn keyword divFunctions skipwhite nextgroup=divParamsList set_sector_height get_sector_height set_point_m8 get_point_m8 set_fog
+syn keyword divFunctions skipwhite nextgroup=divParamsList set_sector_texture get_sector_texture set_wall_texture get_wall_texture
+syn keyword divFunctions skipwhite nextgroup=divParamsList set_env_color strcpy strcat strlen strcmp strchr strstr strset upper lower
+syn keyword divFunctions skipwhite nextgroup=divParamsList strdel screen_copy qsort load_song unload_song song stop_song set_song_pos
+syn keyword divFunctions skipwhite nextgroup=divParamsList get_song_pos get_song_line is_playing_sound is_playing_song fopen fclose
+syn keyword divFunctions skipwhite nextgroup=divParamsList fread fwrite fseek ftell filelength flush get_dirinfo get_fileinfo getdrive
+syn keyword divFunctions skipwhite nextgroup=divParamsList setdrive chdir mkdir remove disk_free memory_free ignore_error save_pcx
+syn keyword divFunctions skipwhite nextgroup=divParamsList sin cos tan asin acos atan atan2 draw delete_draw move_draw save_map
+syn keyword divFunctions skipwhite nextgroup=divParamsList write_in_map calculate itoa change_channel malloc free encode encode_file
+syn keyword divFunctions skipwhite nextgroup=divParamsList decode_file compress_file uncompress_file find_color load_screen force_pal
 
 " Constants
 syn keyword divConstants m320x200 m320x240 m320x400 m360x240 m360x360 m376x282 m640x400 m640x480 m800x600 m1024x768
@@ -149,6 +157,7 @@ hi def link divDebug                  Debug
 hi def link divStruct                 Structure
 hi def link divAssignament            Delimiter
 hi def link divPointerOperator        Operator
+hi def link divEqualsOperator         Operator
 hi def link divMathOperator           Operator
 hi def link divLogicOperator          Operator
 hi def link divTodoComment            Todo
@@ -171,14 +180,5 @@ hi def link divIdentifier             Identifier
 
 
 let b:current_syntax = "div3"
-
-" WIP
-" Expression
-"syntax cluster div3Expression contains=div3Keywords,div3Comment,div3TodoComment,div3String,div3Number,div3Operator
-"
-" Operators
-"syntax match div3Operator /[\!\|\&\+\-\<\>\=\%\/\*\~\^]\{1}/ skipwhite skipempty nextgroup=@div3Expression
-" match /
-"syntax match div3Operator /[/]/
 
 " vim: set ts=2 sw=2 tw=78 et :
