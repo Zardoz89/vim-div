@@ -4,6 +4,7 @@ Highlights language keywords, built-in commands, string literals, numbers, (most
 
 Based on the original files of Casper van Beuzekom (cmvanb) on https://github.com/cmvanb/dotfiles/tree/master/.vim
 
-## Screenshot
+## Screenshots
 
-![Imgur](https://i.imgur.com/qCG4DNa.png)
+![Imgur](https://i.imgur.com/AXkjzLJ.png)
+![Imgur](https://i.imgur.com/zMmD2cv.png)
