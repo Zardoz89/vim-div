@@ -34,5 +34,5 @@ Studio, are set by `g:gemix_detect_keywords` (see `:help pattern`).
 
 ## Screenshots
 
-![Imgur](https://i.imgur.com/AXkjzLJ.png)
-![Imgur](https://i.imgur.com/zMmD2cv.png)
+![Imgur](https://i.imgur.com/GwJpC7t.png)
+![Imgur](https://i.imgur.com/7rgzq3j.png)
