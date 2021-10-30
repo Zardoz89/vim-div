@@ -1,9 +1,8 @@
-" DIV 2 & DIV DX 3.0 Syntax Highlighting for Vim
-" Vim syntax file
-" Language: DIV2 & DIV DX 3.0
-" Original Author: Casper van Beuzekom
-" Maintainer: Luis Panadero Guardeño
-" Latest Revision: 28-10-2021
+" Language:         DIV2 & DIV DX 3.0
+" Original Author:  Casper van Beuzekom
+" Maintainer:       Luis Panadero Guardeño
+" Latest Revision:  28-10-2021
+" URL:              https://github.com/Zardoz89/vim-div
 
 " quit when a syntax file was already loaded
 if exists("b:current_syntax")

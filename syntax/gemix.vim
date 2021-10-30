@@ -1,8 +1,7 @@
-" Gemix Syntax Highlighting for Vim
-" Vim syntax file
 " Language: Gemix language
 " Original Author: Luis Panadero Guardeño
 " Latest Revision: 28-10-2021
+" URL:              https://github.com/Zardoz89/vim-div
 
 " quit when a syntax file was already loaded
 if exists("b:current_syntax")
