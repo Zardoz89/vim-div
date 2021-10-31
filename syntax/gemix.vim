@@ -49,7 +49,8 @@ syn keyword gemixSpecial _use_always_int2string_conversions
 " Funtions
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList dup keydown rgb
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList mode_set mode_get_width mode_get_height mode_get_renderer mode_get_filter mode_set_renderer mode_change mode_set_filter
-syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList mode_set screen_set_color ground_put
+syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList desktop_get_size virtualresolution_set
+syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList screen_set_color ground_put
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList graphicloader_set_behaviour
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList fpg_load fpg_unload
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList fnt_load fnt_unload fnt_set_color text_move
@@ -60,7 +61,7 @@ syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList songchannel_get_lo
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList songchannel_set_loop songchannel_set_loopcount songchannel_set_volume songchannel_set_speed songchannel_set_pan
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList load_sound unload_sound sound_load sound_unload
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList text_delete render_text render_graphic
-syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList logget_set_target logger_get_targetfile logger_is_enabled logger_log logger_set_target
+syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList logger_set_status logget_set_target logger_get_targetfile logger_is_enabled logger_log logger_set_target
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList memory_new memory_delete
 syn keyword gemixFunctions_ skipwhite nextgroup=divParamsList ui32toa
 syn cluster divFunctions contains=divFunctions_,gemixFunctions_
