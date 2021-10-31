@@ -69,23 +69,28 @@ syn cluster divFunctions contains=divFunctions_,gemixFunctions_
 
 " Redefined regions & Gemix syntax regions
 syn region divConstRootBlock start="^\<const\>"
-      \ end="^\ze\<begin\>" end="^\ze\<declare\>" end="^\ze\<typedef\>" end="^\ze\<private\>" end="^\ze\<local\>" end="^\ze\<global\>" transparent fold keepend
+      \ end="^\ze\<begin\>" end="^\ze\<declare\>" end="^\ze\<typedef\>" end="^\ze\<private\>" end="^\ze\<local\>"
+      \ end="^\ze\<global\>" end="^\ze\<process\>" end="^\ze\<function\>" transparent fold keepend
       \ contains=divConstDeclaration,@divTypes,divIdentifier,divAssignament,@divOperators,@divNumbers,divString,@divComments
 
 syn region divGlobalRootBlock start="^\<global\>"
-      \ end="^\ze\<begin\>" end="^\ze\<declare\>" end="^\ze\<typedef\>" end="^\ze\<private\>" end="^\ze\<local\>" transparent fold keepend
+      \ end="^\ze\<begin\>" end="^\ze\<declare\>" end="^\ze\<typedef\>" end="^\ze\<private\>" end="^\ze\<local\>"
+      \ end="^\ze\<process\>" end="^\ze\<function\>" transparent fold keepend
       \ contains=divGlobalDeclaration,divStruct,@divTypes,divIdentifier,divAssignament,@divOperators,@divNumbers,divString,@divComments
 
 syn region divLocalRootBlock start="^\<local\>"
-      \ end="^\ze\<begin\>" end="^\<declare\>" end="^\ze\<typedef\>" end="^\ze\<private\>" end="^\ze\<global\>" transparent fold keepend
+      \ end="^\ze\<begin\>" end="^\<declare\>" end="^\ze\<typedef\>" end="^\ze\<private\>" end="^\ze\<global\>"
+      \ end="^\ze\<process\>" end="^\ze\<function\>" transparent fold keepend
       \ contains=divLocalDeclaration,@divTypes,divIdentifier,divAssignament,@divOperators,@divNumbers,divString,@divComments
 
 syn region gemixDeclareRootBlock start="^\<declare\>"
-      \ end="^\ze\<begin\>" end="^\ze\<private\>" end="^\ze\<global\>" end="^\ze\<local\>" end="^\ze\<typedef\>" transparent fold keepend
+      \ end="^\ze\<begin\>" end="^\ze\<private\>" end="^\ze\<global\>" end="^\ze\<local\>" end="^\ze\<typedef\>"
+      \ end="^\ze\<process\>" end="^\ze\<function\>" transparent fold keepend
       \ contains=gemixDeclareDeclaration,gemixMethodsBlockDeclaration,gemixMethodDeclaration,gemixPublicDeclaration,divPrivateDeclaration,gemixCallbackDeclaration,@divTypes,divEnd,divIdentifier,@divComments
 
 syn region gemixTypdefRootBlock start="^\<typedef\>"
-      \ end="^\ze\<begin\>" end="^\ze\<private\>" end="^\ze\<global\>" end="^\ze\<local\>" end="^\ze\<declare\>" transparent fold keepend
+      \ end="^\ze\<begin\>" end="^\ze\<private\>" end="^\ze\<global\>" end="^\ze\<local\>" end="^\ze\<declare\>"
+      \ end="^\ze\<process\>" end="^\ze\<function\>" transparent fold keepend
       \ contains=gemixTypeDefDeclaration,gemixTypeBlockDeclaration,@divTypes,divEnd,divIdentifier,@divComments
 
 
