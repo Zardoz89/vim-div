@@ -8,8 +8,8 @@ autocmd BufRead,BufNewFile *.[pP][rR][gG] set filetype=gemix
 
 " If not contains anyone of Gemix keywords, we could assume that it's DIV2/3 source code
 let g:gemix_always = get(g:, 'gemix_always', 0)
-if !gemix_always
-  let g:gemix_detect_keywords = get(g:, 'gemix\|\_use_cstyle\|\include\|\typedef\|\declare\|\methods\|\callback\|\keydown\|\u\?int8\|\u\?int16\|\u\?int32\|\u\?int64\|\float\|\double', 0)
+let g:gemix_detect_keywords = get(g:, 'gemix_detect_keywords', '\cgemix\|\_use_cstyle\|\include\|\typedef\|\declare\|\methods\|\callback\|\keydown\|\u\?int8\|\u\?int16\|\u\?int32\|\u\?int64\|\float\|\double')
+if !g:gemix_always
   autocmd BufRead,BufNewFile *.[pP][rR][gG] if !search(g:gemix_detect_keywords, 'nw') | set filetype=div3 | endif
 endif
 
